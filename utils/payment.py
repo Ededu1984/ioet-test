@@ -16,49 +16,51 @@ class Payment:
                             try:
                                 lines: list = f.readlines()
                                 result.append(lines)
-                            except Exception as error:
-                                print(error)
-                                result = ["Something went wrong, please check\
-                                 the content of the text file"]
-
-                return result
+                            except ValueError:
+                                result = ["Something went wrong, please check the text file"]
             else:
                 result = ["The folder is empty."]
-                return result
+        return result
 
     @staticmethod
-    def calculate_payment(hours: list) -> tuple:
-        # Assigning variables
-        employee_hours: list = hours[0].split(",")
-        employee_name: str = employee_hours[0].split("=")[0]
-        first_item: str = employee_hours[0].split("=")[1]
-        employee_hours[0] = first_item
-        total_payment: int = 0
-        for i in employee_hours:
-            # Variables related to the time
-            interval: list = i[2:].split("-")
-            start: datetime = datetime.strptime(interval[0], "%H:%M")
-            end: datetime = datetime.strptime(interval[1], "%H:%M")
-            total_hours: timedelta = end - start
-            # Conditional statement to calculate the payment
-            if i[:2] in ['SA', 'SU']:
-                if start > datetime.strptime("00:00", "%H:%M") \
-                        and (start <= datetime.strptime("09:00", "%H:%M")):
-                    payment: int = int(str(total_hours)[0]) * 30
-                elif start > datetime.strptime("09:00", "%H:%M") \
-                        and (start <= datetime.strptime("18:00", "%H:%M")):
-                    payment: int = int(str(total_hours)[0]) * 20
-                else:
-                    payment: int = int(str(total_hours)[0]) * 25
-            else:
-                if start > datetime.strptime("00:00", "%H:%M") \
-                        and (start <= datetime.strptime("09:00", "%H:%M")):
-                    payment: int = int(str(total_hours)[0]) * 25
-                elif start > datetime.strptime("09:00", "%H:%M") \
-                        and (start <= datetime.strptime("18:00", "%H:%M")):
-                    payment: int = int(str(total_hours)[0]) * 15
-                else:
-                    payment: int = int(str(total_hours)[0]) * 20
-            total_payment += payment
+    def calculate_payment(hours: list) -> list:
+        try:
+            if hours != 'The folder is empty.':
+                # Assigning variables
+                employee_hours: list = hours[0].split(",")
+                employee_name: str = employee_hours[0].split("=")[0]
+                first_item: str = employee_hours[0].split("=")[1]
+                employee_hours[0] = first_item
+                total_payment: int = 0
+                for i in employee_hours:
+                    # Variables related to the time
+                    interval: list = i[2:].split("-")
+                    start: datetime = datetime.strptime(interval[0], "%H:%M")
+                    end: datetime = datetime.strptime(interval[1], "%H:%M")
+                    total_hours: timedelta = end - start
+                    # Conditional statement to calculate the payment
+                    if i[:2] in ['SA', 'SU']:
+                        if start > datetime.strptime("00:00", "%H:%M") \
+                                and (start <= datetime.strptime("09:00", "%H:%M")):
+                            payment: int = int(str(total_hours)[0]) * 30
+                        elif start > datetime.strptime("09:00", "%H:%M") \
+                                and (start <= datetime.strptime("18:00", "%H:%M")):
+                            payment: int = int(str(total_hours)[0]) * 20
+                        else:
+                            payment: int = int(str(total_hours)[0]) * 25
+                    else:
+                        if start > datetime.strptime("00:00", "%H:%M") \
+                                and (start <= datetime.strptime("09:00", "%H:%M")):
+                            payment: int = int(str(total_hours)[0]) * 25
+                        elif start > datetime.strptime("09:00", "%H:%M") \
+                                and (start <= datetime.strptime("18:00", "%H:%M")):
+                            payment: int = int(str(total_hours)[0]) * 15
+                        else:
+                            payment: int = int(str(total_hours)[0]) * 20
+                    total_payment += payment
+                result: list = [f"The amount to pay {employee_name} is: {total_payment}USD"]
+                return result
 
-        return employee_name, total_payment
+        except ValueError:
+            result: list = ["Something went wrong, please check the text file"]
+            return result
