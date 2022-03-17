@@ -77,4 +77,11 @@ In the folder .test/ it's necessary to execute the command pytest + the test fil
 <br>
 <img src="img/img2.png" width="600" height="100"/>
 
+Three tests were implemented:
+Execute the command pytest + filename in the test folder.
+
+- test_payment.py (Use only the ASTRID example)
+- test_read_folder_correct.py (Use the ASTRID and RENE examples)
+- test_read_folder_empty.py (keep the folder empty)
+
 The only external library used is pytest, all other libraries such as OS and datetime belong to the default python package.
