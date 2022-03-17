@@ -38,8 +38,7 @@ SU: Sunday
 
 Input: the name of an employee and the schedule they worked, indicating the time and hours.
 This should be a .txt file with at least five sets of data.
-
-<br>
+___
 
 This is an exercise to check how much money should be paid for an employee.
 
