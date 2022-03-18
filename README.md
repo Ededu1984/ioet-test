@@ -64,18 +64,18 @@ LINUX -> source env/bin/activate
 WINDOWS -> .\env\Scripts\activate
 <br>
 
-Then execute the command pip install pytest
+Then execute the command pip install pytest.
 
 Since the virtual environment is activated the command python main.py should be executed.
 <br>
 Any other employees should be added in the folder employees to have their payments calculated.
 
-<img src="img/img1.png" width="600" height="80"/>
+<img src="img/img1.png" width="500" height="100"/>
 
 ### Performing the test using Pytest
 In the folder .test/ it's necessary to execute the command pytest + the test file.
 <br>
-<img src="img/img2.png" width="600" height="100"/>
+<img src="img/img2.png" width="600" height="200"/>
 
 Three tests were implemented:
 Execute the command pytest + filename in the test folder.
@@ -83,5 +83,11 @@ Execute the command pytest + filename in the test folder.
 - test_payment.py (Use only the ASTRID example)
 - test_read_folder_correct.py (Use the ASTRID and RENE examples)
 - test_read_folder_empty.py (keep the folder empty)
+
+Make sure to change the directory indicating the correct path where the test folder is located.
+
+Example : 
+- Linux: /home/edson/ioet-test/employees
+- Windows: D:/testes/teste_ioet/ioet-test/employees
 
 The only external library used is pytest, all other libraries such as OS and datetime belong to the default python package.

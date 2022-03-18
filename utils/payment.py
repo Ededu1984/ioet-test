@@ -6,7 +6,9 @@ class Payment:
 
     @staticmethod
     def read_folder(dir: str) -> list:
+        # Creating an empty list
         result: list = []
+        # Loop over the folder to read the text files
         for root, dirs, files in os.walk(dir):
             if files != []:
                 for file in files:
@@ -17,8 +19,10 @@ class Payment:
                                 lines: list = f.readlines()
                                 result.append(lines)
                             except ValueError:
+                                # Returning message if something went wrong
                                 result = ["Something went wrong, please check the text file"]
             else:
+                # Returning message in case the folder is empty
                 result = ["The folder is empty."]
         return result
 
@@ -58,9 +62,11 @@ class Payment:
                         else:
                             payment: int = int(str(total_hours)[0]) * 20
                     total_payment += payment
+                # Returning message with the total payment
                 result: list = [f"The amount to pay {employee_name} is: {total_payment}USD"]
                 return result
 
         except ValueError:
+            # Returning message of error
             result: list = ["Something went wrong, please check the text file"]
             return result
