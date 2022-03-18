@@ -70,7 +70,7 @@ Since the virtual environment is activated the command python main.py should be 
 <br>
 Any other employees should be added in the folder employees to have their payments calculated.
 
-<img src="img/img1.png" width="500" height="100"/>
+<img src="img/img1.png" width="500" height="80"/>
 
 ### Performing the test using Pytest
 In the folder .test/ it's necessary to execute the command pytest + the test file.
